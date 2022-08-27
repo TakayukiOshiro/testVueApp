@@ -16,6 +16,9 @@
     <div id="debug">
         {{debugMessage}}
     </div>
+    <div id="img">
+        <img v-bind:src="imageFile">
+    </div>
 
     <script>
         // vueのコード
@@ -34,8 +37,10 @@
             methods:{
 
                 startQuestion: function(){
+                    img.imageFile = "";
                     if(startComment.message == 'Q1: Are you happy?'){
                         startComment.message = "You are Perfect!"
+                        img.imageFile = "mv-hangyodon.png"
                         this.btnText = "RESTART"
                     }else if(startComment.message=="You are Perfect!"){
                         startComment.message = "Are you ready?"
@@ -52,6 +57,13 @@
             el:"#debug",
             data:{
                 debugMessage:""
+            }
+        })
+
+        var img = new Vue({
+            el:"#img",
+            data:{
+                imageFile: ""
             }
         })
 
