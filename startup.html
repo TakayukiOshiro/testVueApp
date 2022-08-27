@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id="startComment">
+        {{ message }}
+    </div>
+    <div id="yesBtn">
+        <button v-on:click="startQuestion"><p>{{btnText}}</p></button>
+    </div>
+    <div id="debug">
+        {{debugMessage}}
+    </div>
+
+    <script>
+        // vueのコード
+        var startComment = new Vue({
+            el:'#startComment',
+            data:{
+                message:'Are you ready?'
+            }
+        })
+
+        var yesBtn = new Vue({
+            el:'#yesBtn',
+            data:{
+                btnText:'YES',
+            },
+            methods:{
+
+                startQuestion: function(){
+                    if(startComment.message == 'Q1: Are you happy?'){
+                        startComment.message = "You are Perfect!"
+                        this.btnText = "RESTART"
+                    }else if(startComment.message=="You are Perfect!"){
+                        startComment.message = "Are you ready?"
+                        this.btnText = "YES"
+                    }else if(startComment.message=="Are you ready?"){
+                        startComment.message = 'Q1: Are you happy?';
+                    }
+
+                }
+            }
+        })
+
+        var debug = new Vue({
+            el:"#debug",
+            data:{
+                debugMessage:""
+            }
+        })
+
+    </script>
+</body>
+</html>
